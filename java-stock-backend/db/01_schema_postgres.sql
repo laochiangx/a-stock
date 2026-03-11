@@ -1,3 +1,6 @@
+-- PostgreSQL schema for this project.
+-- Source: src/main/resources/schema.sql
+
 -- 创建数据库表结构
 
 -- 创建标签表
@@ -11,7 +14,7 @@ CREATE TABLE IF NOT EXISTS tags (
     deleted INTEGER DEFAULT 0
 );
 
- ALTER TABLE tags ADD COLUMN IF NOT EXISTS priority INTEGER DEFAULT 0;
+ALTER TABLE tags ADD COLUMN IF NOT EXISTS priority INTEGER DEFAULT 0;
 
 -- 创建指数基本信息表
 CREATE TABLE IF NOT EXISTS index_basic (
@@ -227,8 +230,7 @@ CREATE INDEX IF NOT EXISTS idx_theme_plate_data_date ON theme_plate_data(data_da
 CREATE INDEX IF NOT EXISTS idx_theme_plate_data_plate ON theme_plate_data(plate_name);
 CREATE INDEX IF NOT EXISTS idx_theme_plate_summary_date ON theme_plate_summary(data_date);
 
-
- CREATE TABLE IF NOT EXISTS stock_daily_snapshot (
+CREATE TABLE IF NOT EXISTS stock_daily_snapshot (
      id SERIAL PRIMARY KEY,
      data_date DATE NOT NULL,
      stock_code VARCHAR(20) NOT NULL,
@@ -249,13 +251,12 @@ CREATE INDEX IF NOT EXISTS idx_theme_plate_summary_date ON theme_plate_summary(d
      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
      deleted INTEGER DEFAULT 0,
      UNIQUE(data_date, stock_code)
- );
+);
 
- CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_date ON stock_daily_snapshot(data_date);
- CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_code ON stock_daily_snapshot(stock_code);
+CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_date ON stock_daily_snapshot(data_date);
+CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_code ON stock_daily_snapshot(stock_code);
 
-
- CREATE TABLE IF NOT EXISTS stock_daily_snapshot_tag (
+CREATE TABLE IF NOT EXISTS stock_daily_snapshot_tag (
      id SERIAL PRIMARY KEY,
      snapshot_id INTEGER NOT NULL,
      tag_id INTEGER NOT NULL,
@@ -265,11 +266,10 @@ CREATE INDEX IF NOT EXISTS idx_theme_plate_summary_date ON theme_plate_summary(d
      UNIQUE(snapshot_id, tag_id),
      FOREIGN KEY (snapshot_id) REFERENCES stock_daily_snapshot(id) ON DELETE CASCADE,
      FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
- );
+);
 
- CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_tag_snapshot ON stock_daily_snapshot_tag(snapshot_id);
- CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_tag_tag ON stock_daily_snapshot_tag(tag_id);
-
+CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_tag_snapshot ON stock_daily_snapshot_tag(snapshot_id);
+CREATE INDEX IF NOT EXISTS idx_stock_daily_snapshot_tag_tag ON stock_daily_snapshot_tag(tag_id);
 
 -- 创建24小时热词表（增强版）
 CREATE TABLE IF NOT EXISTS hot_word (
@@ -281,14 +281,13 @@ CREATE TABLE IF NOT EXISTS hot_word (
     source VARCHAR(100),
     data_date DATE NOT NULL,
     data_hour INTEGER DEFAULT 0,
-    -- 新增字段：更细维度统计
-    word_type VARCHAR(50) DEFAULT 'normal',  -- 词汇类型: positive/negative/industry/concept/stock/normal
-    sentiment_score DECIMAL(10,4) DEFAULT 0,  -- 情感得分
-    industry VARCHAR(100),                    -- 所属行业
-    related_stocks TEXT,                      -- 关联股票代码，逗号分隔
-    first_appear_time TIMESTAMP,              -- 首次出现时间
-    last_appear_time TIMESTAMP,               -- 最后出现时间
-    appear_count INTEGER DEFAULT 1,           -- 出现次数（跨小时累计）
+    word_type VARCHAR(50) DEFAULT 'normal',
+    sentiment_score DECIMAL(10,4) DEFAULT 0,
+    industry VARCHAR(100),
+    related_stocks TEXT,
+    first_appear_time TIMESTAMP,
+    last_appear_time TIMESTAMP,
+    appear_count INTEGER DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -303,13 +302,13 @@ CREATE INDEX IF NOT EXISTS idx_hot_word_type ON hot_word (word_type);
 CREATE TABLE IF NOT EXISTS word_dictionary (
     id SERIAL PRIMARY KEY,
     word VARCHAR(100) NOT NULL UNIQUE,
-    word_type VARCHAR(50) DEFAULT 'normal',   -- positive/negative/industry/concept/stock/normal
-    base_weight DECIMAL(10,4) DEFAULT 1.0,    -- 基础权重
-    sentiment_value DECIMAL(10,4) DEFAULT 0,  -- 情感值：正数为正面，负数为负面
-    industry VARCHAR(100),                    -- 所属行业（如果是行业词）
-    is_system BOOLEAN DEFAULT FALSE,          -- 是否系统预置词
-    frequency_total INTEGER DEFAULT 0,        -- 历史总出现次数
-    last_seen_date DATE,                      -- 最后出现日期
+    word_type VARCHAR(50) DEFAULT 'normal',
+    base_weight DECIMAL(10,4) DEFAULT 1.0,
+    sentiment_value DECIMAL(10,4) DEFAULT 0,
+    industry VARCHAR(100),
+    is_system BOOLEAN DEFAULT FALSE,
+    frequency_total INTEGER DEFAULT 0,
+    last_seen_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -322,16 +321,16 @@ CREATE INDEX IF NOT EXISTS idx_word_dict_weight ON word_dictionary (base_weight 
 CREATE TABLE IF NOT EXISTS hot_word_summary (
     id SERIAL PRIMARY KEY,
     word VARCHAR(100) NOT NULL,
-    summary_type VARCHAR(20) NOT NULL,        -- daily/weekly/monthly
+    summary_type VARCHAR(20) NOT NULL,
     summary_date DATE NOT NULL,
     total_frequency INTEGER DEFAULT 0,
     avg_weight DECIMAL(10,4) DEFAULT 1.0,
     total_score DECIMAL(15,4) DEFAULT 0,
-    source_count INTEGER DEFAULT 1,           -- 出现在多少个来源
-    sources TEXT,                             -- 来源列表，逗号分隔
+    source_count INTEGER DEFAULT 1,
+    sources TEXT,
     word_type VARCHAR(50),
-    trend VARCHAR(20),                        -- up/down/stable 趋势
-    rank_change INTEGER DEFAULT 0,            -- 排名变化
+    trend VARCHAR(20),
+    rank_change INTEGER DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -339,7 +338,6 @@ CREATE TABLE IF NOT EXISTS hot_word_summary (
 CREATE UNIQUE INDEX IF NOT EXISTS uk_hot_word_summary ON hot_word_summary (word, summary_type, summary_date);
 CREATE INDEX IF NOT EXISTS idx_hot_word_summary_date ON hot_word_summary (summary_date);
 CREATE INDEX IF NOT EXISTS idx_hot_word_summary_type ON hot_word_summary (summary_type);
-
 
 CREATE TABLE IF NOT EXISTS ths_hot_list_day (
     id SERIAL PRIMARY KEY,
@@ -371,7 +369,6 @@ CREATE TABLE IF NOT EXISTS ths_hot_list_day (
 
 CREATE INDEX IF NOT EXISTS idx_ths_hot_list_day_date ON ths_hot_list_day (data_date);
 CREATE INDEX IF NOT EXISTS idx_ths_hot_list_day_order ON ths_hot_list_day (data_date, order_num);
-
 
 CREATE TABLE IF NOT EXISTS dc_hot_list_day (
     id SERIAL PRIMARY KEY,
@@ -414,14 +411,14 @@ CREATE INDEX IF NOT EXISTS idx_cls_hot_list_day_order ON cls_hot_list_day (data_
 -- 创建菜单配置表
 CREATE TABLE IF NOT EXISTS menu_config (
     id SERIAL PRIMARY KEY,
-    menu_key VARCHAR(100) NOT NULL UNIQUE,    -- 菜单唯一标识
-    menu_name VARCHAR(100) NOT NULL,          -- 菜单显示名称
-    menu_icon VARCHAR(100),                   -- 菜单图标
-    menu_path VARCHAR(200),                   -- 路由路径
-    parent_key VARCHAR(100),                  -- 父菜单key，null表示顶级菜单
-    sort_order INTEGER DEFAULT 0,             -- 排序
-    is_visible BOOLEAN DEFAULT TRUE,          -- 是否显示
-    is_system BOOLEAN DEFAULT FALSE,          -- 是否系统菜单（不可删除）
+    menu_key VARCHAR(100) NOT NULL UNIQUE,
+    menu_name VARCHAR(100) NOT NULL,
+    menu_icon VARCHAR(100),
+    menu_path VARCHAR(200),
+    parent_key VARCHAR(100),
+    sort_order INTEGER DEFAULT 0,
+    is_visible BOOLEAN DEFAULT TRUE,
+    is_system BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -429,7 +426,6 @@ CREATE TABLE IF NOT EXISTS menu_config (
 CREATE INDEX IF NOT EXISTS idx_menu_config_parent ON menu_config (parent_key);
 CREATE INDEX IF NOT EXISTS idx_menu_config_visible ON menu_config (is_visible);
 CREATE INDEX IF NOT EXISTS idx_menu_config_sort ON menu_config (sort_order);
-
 
 CREATE TABLE IF NOT EXISTS market_daily_stat (
     id SERIAL PRIMARY KEY,
@@ -488,7 +484,6 @@ CREATE TABLE IF NOT EXISTS market_daily_stat (
 
 CREATE INDEX IF NOT EXISTS idx_market_daily_stat_date ON market_daily_stat (data_date);
 
-
 CREATE TABLE IF NOT EXISTS tdx_lbtt_day (
     id SERIAL PRIMARY KEY,
     data_date DATE NOT NULL,
@@ -515,7 +510,6 @@ CREATE TABLE IF NOT EXISTS tdx_lbtt_day (
 
 CREATE INDEX IF NOT EXISTS idx_tdx_lbtt_day_date ON tdx_lbtt_day (data_date);
 
-
 CREATE TABLE IF NOT EXISTS tdx_lbtt_item (
     id SERIAL PRIMARY KEY,
     data_date DATE NOT NULL,
@@ -541,7 +535,6 @@ CREATE TABLE IF NOT EXISTS tdx_lbtt_item (
 
 CREATE INDEX IF NOT EXISTS idx_tdx_lbtt_item_date ON tdx_lbtt_item (data_date);
 CREATE INDEX IF NOT EXISTS idx_tdx_lbtt_item_level ON tdx_lbtt_item (data_date, level);
-
 
 CREATE TABLE IF NOT EXISTS sys_user (
     id SERIAL PRIMARY KEY,

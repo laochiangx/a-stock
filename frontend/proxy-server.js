@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const path = require('path');
 
 const app = express();
-const PORT = 5173;
+const PORT = 5178;
 const BACKEND_URL = 'http://localhost:8089';
 
 // 设置代理中间件用于 API 请求
