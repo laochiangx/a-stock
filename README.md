@@ -27,6 +27,44 @@
 股票自选
 <img width="2559" height="1269" alt="image" src="https://github.com/user-attachments/assets/d428f9da-30e9-4eb7-9a8a-abaa3586af68" />
 
+VIP功能：题材板块
+<img width="2543" height="1262" alt="image" src="https://github.com/user-attachments/assets/ea5af677-4239-4fe2-b424-24cf1a775e9e" />
+
+<img width="2531" height="1257" alt="image" src="https://github.com/user-attachments/assets/9f191a57-cf42-423f-8b2f-373becf3cbf3" />
+
+<img width="2546" height="1265" alt="image" src="https://github.com/user-attachments/assets/5516d580-911b-439b-beee-34ec1d7a0f54" />
+超级重磅功能-龙图腾
+
+<img width="2518" height="1254" alt="image" src="https://github.com/user-attachments/assets/229be103-a950-488c-a75c-9b0d5b61fff0" />
+
+<img width="2532" height="1270" alt="image" src="https://github.com/user-attachments/assets/e9173365-efb8-4d4d-9e3b-fa8136e8ba13" />
+
+超级重磅功能-AI复盘
+<img width="2533" height="1256" alt="image" src="https://github.com/user-attachments/assets/f687b5ed-3ca9-4071-9ab0-120d873e4093" />
+
+<img width="1805" height="1118" alt="image" src="https://github.com/user-attachments/assets/eacc17e0-b800-4380-8655-5382b1123756" />
+实时连板天梯
+<img width="2536" height="1252" alt="image" src="https://github.com/user-attachments/assets/9f1e9541-c17f-4895-b588-2fbab8359089" />
+大盘直播
+<img width="2538" height="1261" alt="image" src="https://github.com/user-attachments/assets/77958b35-fc5c-45d1-b996-24fb19c5374a" />
+大盘竞价
+<img width="2541" height="1257" alt="image" src="https://github.com/user-attachments/assets/02f040ba-ca9f-4862-a3ff-24e483f6eb24" />
+龙头挖掘
+<img width="2540" height="1257" alt="image" src="https://github.com/user-attachments/assets/86d79db3-c974-4785-8f2c-557a6e17259e" />
+龙虎榜
+<img width="2537" height="1274" alt="image" src="https://github.com/user-attachments/assets/ea36a0e2-5a9b-4bac-8528-856b5341157d" />
+热榜
+<img width="2540" height="1270" alt="image" src="https://github.com/user-attachments/assets/6237b431-72b5-40a8-a4f6-910283f40fac" />
+人气聚合
+<img width="2536" height="1268" alt="image" src="https://github.com/user-attachments/assets/2765cdb2-2417-4b23-87c5-ad4c04d9439a" />
+多日连板天梯
+<img width="2537" height="1260" alt="image" src="https://github.com/user-attachments/assets/e5704bf7-d8d7-45b2-82b4-cdb7b588d17e" />
+复盘
+<img width="2538" height="1269" alt="image" src="https://github.com/user-attachments/assets/ea5725ce-a03c-4484-9a26-275adb6cce79" />
+其他，历史股票，爬取
+<img width="2531" height="1256" alt="image" src="https://github.com/user-attachments/assets/c93fbf3e-c455-43e4-898a-d542f27f5bfe" />
+
+
 
 
 ### 💬 支持大模型/平台
