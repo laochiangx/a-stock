@@ -1,0 +1,82 @@
+{
+  "name": "stock-app",
+  "version": "1.0.0",
+  "description": "AI赋能股票分析",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "cross-env NODE_ENV=development electron .",
+    "electron:build": "vite build && electron-builder",
+    "package": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "@tdesign-vue-next/chat": "^0.4.5",
+    "@types/file-saver": "^2.0.7",
+    "@vavt/cm-extension": "^1.8.0",
+    "@vavt/v3-extension": "^3.0.0",
+    "axios": "^1.13.2",
+    "date-fns": "^4.1.0",
+    "echarts": "^5.6.0",
+    "express": "^5.2.1",
+    "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
+    "http-proxy-middleware": "^3.0.5",
+    "lodash": "^4.17.21",
+    "md-editor-v3": "^5.2.3",
+    "tdesign-icons-vue-next": "^0.3.7",
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.0",
+    "vue3-danmaku": "^1.6.1"
+  },
+  "devDependencies": {
+    "@tdesign-vue-next/auto-import-resolver": "^0.1.1",
+    "@vicons/antd": "^0.13.0",
+    "@vicons/carbon": "^0.13.0",
+    "@vicons/fa": "^0.13.0",
+    "@vicons/fluent": "^0.13.0",
+    "@vicons/ionicons4": "^0.13.0",
+    "@vicons/ionicons5": "^0.13.0",
+    "@vicons/material": "^0.13.0",
+    "@vicons/tabler": "^0.13.0",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "cross-env": "^7.0.3",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0",
+    "html-docx-js-typescript": "^0.1.5",
+    "naive-ui": "^2.43.2",
+    "unplugin-auto-import": "^20.0.0",
+    "unplugin-vue-components": "^29.0.0",
+    "vfonts": "^0.0.3",
+    "vite": "7.2.4"
+  },
+  "build": {
+    "appId": "com.stock.app",
+    "productName": "股票分析",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "src/assets/images/logo-universal.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "extraResources": [
+      {
+        "from": "../java-stock-backend/target/java-stock-backend-1.0-SNAPSHOT.jar",
+        "to": "backend/java-stock-backend.jar"
+      }
+    ]
+  },
+  "keywords": [
+    "AI赋能股票分析",
+    "stock"
+  ],
+  "author": "spark",
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
+}
