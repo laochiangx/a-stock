@@ -17,6 +17,17 @@
 
 ### 📦 立即体验
 - 下载地址（Gitee Releases）：https://gitee.com/gengyunzhongyue/a-stocks_all/releases
+### 📈 功能截图
+市场行情
+<img width="2528" height="1260" alt="image" src="https://github.com/user-attachments/assets/c129e137-26af-445c-ad63-2b8b8cb90120" />
+
+看盘（重磅功能）
+<img width="2538" height="1257" alt="image" src="https://github.com/user-attachments/assets/bb0a037e-b2e9-4cb3-b4c2-b5f832ed93eb" />
+
+股票自选
+<img width="2559" height="1269" alt="image" src="https://github.com/user-attachments/assets/d428f9da-30e9-4eb7-9a8a-abaa3586af68" />
+
+
 
 ### 💬 支持大模型/平台
 | 模型 | 状态 | 备注                                                                                                                                                                                                                                                                |
