@@ -293,6 +293,14 @@ CREATE TABLE IF NOT EXISTS hot_word (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS word_type VARCHAR(50) DEFAULT 'normal';
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS sentiment_score DECIMAL(10,4) DEFAULT 0;
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS industry VARCHAR(100);
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS related_stocks TEXT;
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS first_appear_time TIMESTAMP;
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS last_appear_time TIMESTAMP;
+ALTER TABLE hot_word ADD COLUMN IF NOT EXISTS appear_count INTEGER DEFAULT 1;
+
 CREATE UNIQUE INDEX IF NOT EXISTS uk_hot_word ON hot_word (word, source, data_date, data_hour);
 CREATE INDEX IF NOT EXISTS idx_hot_word_date ON hot_word (data_date);
 CREATE INDEX IF NOT EXISTS idx_hot_word_source ON hot_word (source);
@@ -556,3 +564,7 @@ CREATE TABLE IF NOT EXISTS sys_user (
 );
 
 CREATE INDEX IF NOT EXISTS idx_sys_user_enabled ON sys_user (is_enabled);
+
+INSERT INTO sys_user (username, password_hash, display_name, is_admin, is_enabled, created_at, updated_at)
+SELECT 'admin', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Administrator', TRUE, TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+WHERE NOT EXISTS (SELECT 1 FROM sys_user WHERE username = 'admin');
