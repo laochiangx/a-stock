@@ -17,7 +17,7 @@
 
 ### 📦 立即体验
 - 下载地址（Gitee Releases）：https://gitee.com/gengyunzhongyue/a-stocks_all/releases
-### 📈 功能截图
+### 📈 功能截图（所有功能在releases下载软件都可以体验）
 市场行情
 <img width="2528" height="1260" alt="image" src="https://github.com/user-attachments/assets/c129e137-26af-445c-ad63-2b8b8cb90120" />
 
@@ -64,7 +64,8 @@ VIP功能：题材板块
 其他，历史股票，爬取
 <img width="2531" height="1256" alt="image" src="https://github.com/user-attachments/assets/c93fbf3e-c455-43e4-898a-d542f27f5bfe" />
 
-
+### 📦 立即体验（所有功能在releases下载软件都可以体验）
+- 下载地址（Gitee Releases）：https://gitee.com/gengyunzhongyue/a-stocks_all/releases
 
 
 ### 💬 支持大模型/平台
